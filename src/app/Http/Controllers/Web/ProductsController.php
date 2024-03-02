@@ -17,7 +17,7 @@ class ProductsController extends Controller
         // $responseBody = json_decode($response->getContent(), true);        
         
         // $products = $responseBody["data"][0];
-        dd($products);
+        // dd($products);
 
         return view('products')->with([
             'products' => $products,
