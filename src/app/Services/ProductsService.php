@@ -26,4 +26,16 @@ class ProductsService
     {
         return $this->makeRequest('GET', 'products');
     }
+
+    public function getProduct($id)
+    {
+        return $this->makeRequest('GET', "products/{$id}");
+    }
+
+    public function postProducts($productData)
+    {
+        return $this->makeRequest('POST', 'products', [], $productData, [], $hasFile = true);
+    }
+
+
 }

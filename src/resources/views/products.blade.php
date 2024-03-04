@@ -16,13 +16,15 @@
         <div class="row">
             @foreach ($products as $product)
                 <div class="col-4">
-                    <div class="card">
-                        <img src="" alt="">
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">{{$product->name}}</h5>
-                        <p class="card-text">{{$product->description}}</p>
-                    </div>
+                    <a href="{{ route('show', ['slug' => $product->name, 'id'=>$product->id]) }}">
+                        <div class="card">
+                            <img src="{{url('images/'.$product->slug)}}" alt="Image">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">{{$product->name}}</h5>
+                            <p class="card-text">{{$product->description}}</p>
+                        </div>
+                    </a>
                 </div>
             @endforeach
         </div>

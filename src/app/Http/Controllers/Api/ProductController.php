@@ -20,7 +20,7 @@ class ProductController extends Controller
 
     public function index()
     {
-        $products = $this->product->paginate(1);
+        $products = $this->product->paginate(10);
 
         return response()->json($products);
     }
@@ -34,10 +34,11 @@ class ProductController extends Controller
 
     public function save(Request $request)
     {
-     $data = $request->all();
-     $product = $this->product->create($data);
-     
-     return response()->json($product);
+        $data = $request->all();
+        
+        $product = $this->product->create($data);
+        
+        return response()->json($product);
     }
 
     public function update(Request $request, $id)
@@ -55,6 +56,10 @@ class ProductController extends Controller
     {
         
         $product = $this->product->find($id);
+        $image = public_path('images/' . $product->getOriginal('slug'));
+        if(file_exists($image)) {
+         unlink($image);
+        }
         $product->delete();
 
         return response()->json(['data' => ['msg' => 'Produto foi removido com sucesso']]);
